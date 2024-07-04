@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../src/index.css'
 
 function ListJobsComponent() {
 
@@ -77,6 +78,7 @@ function ListJobsComponent() {
                     }
                 </tbody>
             </table>
+
         </div>
     )
 }
