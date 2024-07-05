@@ -1,4 +1,17 @@
+import { useEffect, useState } from "react";
+import { listJobs } from "../services/JobService";
+
 const ListJobsComponent = () => {
+
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(() => {
+        listJobs().then((response) => {
+            setJobs(response.data);
+        }).catch(error => {
+            console.log(error)
+        })
+    }, []);
 
     const dumyData = [
         {
@@ -91,7 +104,7 @@ const ListJobsComponent = () => {
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-100 whitespace-nowrap">
                         {
-                            dumyData.map(job =>
+                            jobs.map(job =>
                                 <tr key={job.id} className={job.id % 2 === 0 ? 'bg-white' : 'bg-gray-200'}>
                                     <td className='p-3 text-sm text-gray-700'>{job.id}</td>
                                     <td className='p-3 text-sm text-gray-700'>{job.jobPosition}</td>
